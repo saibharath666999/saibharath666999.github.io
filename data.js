@@ -39,6 +39,7 @@ const ICE_CARS = [
     id: "hyundai-creta-2025", brand: "Hyundai", name: "Creta", year: "2025",
     fuel: ["petrol","diesel"], priceRange: "₹10.79 – 20.20 L",
     meta: ["1.5L Petrol / Diesel / Hybrid","5 seats","FWD"],
+    image: "images/hyundai-creta-2025.jpg",
     colors: [{name:"Abyss Black",hex:"#1a1a1a"},{name:"Atlas White",hex:"#f5f5f0"},{name:"Ranger Khaki",hex:"#8b7355"},{name:"Fiery Red",hex:"#c0392b"},{name:"Starry Night",hex:"#1c2951"},{name:"Typhoon Silver",hex:"#a0a0a0"}],
     variants: [
       { name:"E (Base)", price:"₹10.79 L", specs:{ Engine:"1.5L Petrol MPI (115 hp)", Transmission:"6-speed MT", Mileage:"17.4 km/L", "Boot Space":"433 L", "Ground Clearance":"190 mm", Airbags:"2", Touchscreen:"8-inch", Warranty:"3yr / 1,00,000 km" },
@@ -62,6 +63,7 @@ const ICE_CARS = [
     id: "hyundai-venue-2025", brand: "Hyundai", name: "Venue", year: "2025",
     fuel: ["petrol","diesel"], priceRange: "₹7.94 – 13.27 L",
     meta: ["1.2L Petrol / 1.5L Diesel / 1.0L Turbo","5 seats","FWD"],
+    image: "images/hyundai-venue-2025.jpg",
     colors: [{name:"Denim Blue",hex:"#2c4a7c"},{name:"Polar White",hex:"#f0f0ee"},{name:"Thunder Silver",hex:"#9a9a9a"},{name:"Fiery Red",hex:"#c0392b"},{name:"Earthy Brown",hex:"#7d5a3c"}],
     variants: [
       { name:"E (Base)", price:"₹7.94 L", specs:{ Engine:"1.2L Petrol (83 hp)", Transmission:"5-speed MT", Mileage:"17.5 km/L", "Boot Space":"355 L", "Ground Clearance":"195 mm", Airbags:"2", Touchscreen:"8-inch", Warranty:"3yr" },
@@ -85,6 +87,7 @@ const ICE_CARS = [
     id: "kia-seltos-2025", brand: "Kia", name: "Seltos", year: "2025",
     fuel: ["petrol","diesel"], priceRange: "₹10.99 – 20.19 L",
     meta: ["1.5L Petrol / Diesel / Turbo","5 seats","FWD"],
+    image: "images/kia-seltos-2025.jpg",
     colors: [{name:"Glacial White",hex:"#ece9e3"},{name:"Imperial Blue",hex:"#1f3a5f"},{name:"Aurora Black",hex:"#111"},{name:"Gravity Grey",hex:"#6b6b6b"},{name:"Pewter Olive",hex:"#6b6b42"},{name:"Sparkling Silver",hex:"#c0c0c0"}],
     variants: [
       { name:"EX (Base)", price:"₹10.99 L", specs:{ Engine:"1.5L Petrol MPI (115 hp)", Transmission:"6-speed MT", Mileage:"16.5 km/L", "Boot Space":"433 L", "Ground Clearance":"190 mm", Airbags:"6", Touchscreen:"10.25-inch", Warranty:"3yr" },
@@ -108,6 +111,7 @@ const ICE_CARS = [
     id: "kia-syros-2026", brand: "Kia", name: "Syros", year: "2026",
     fuel: ["petrol","diesel"], priceRange: "₹8.99 – 18.99 L",
     meta: ["1.0L Turbo Petrol / 1.5L Diesel","5 seats","FWD"],
+    image: "images/kia-syros-2026.jpg",
     colors: [{name:"Glacier White",hex:"#f0ede8"},{name:"Midnight Black",hex:"#161616"},{name:"Atlas Grey",hex:"#7a7a7a"},{name:"Intense Red",hex:"#b22222"},{name:"Sage Green",hex:"#5a7a5a"}],
     variants: [
       { name:"HTE (Base)", price:"₹8.99 L", specs:{ Engine:"1.0L Turbo Petrol (120 hp)", Transmission:"6-speed iMT", Mileage:"18.4 km/L", "Boot Space":"465 L", "Ground Clearance":"198 mm", Airbags:"6", Touchscreen:"8-inch", Warranty:"3yr" },
@@ -131,6 +135,7 @@ const ICE_CARS = [
     id: "maruti-brezza-2025", brand: "Maruti Suzuki", name: "Brezza", year: "2025",
     fuel: ["petrol","hybrid"], priceRange: "₹8.34 – 14.97 L",
     meta: ["1.5L Petrol + 48V Mild Hybrid","5 seats","FWD"],
+    image: "images/maruti-brezza-2025.png",
     colors: [{name:"Magma Grey",hex:"#4a4a4a"},{name:"Pearl Arctic White",hex:"#f0eee9"},{name:"Brave Khaki",hex:"#8b7a52"},{name:"Splendid Silver",hex:"#b5b5b5"},{name:"Opulent Red",hex:"#9b2020"},{name:"Midnight Blue",hex:"#1a2d5a"}],
     variants: [
       { name:"LXi (Base)", price:"₹8.34 L", specs:{ Engine:"1.5L Petrol (103 hp)", Transmission:"5-speed MT", Mileage:"17.4 km/L", "Boot Space":"328 L", "Ground Clearance":"198 mm", Airbags:"2", Touchscreen:"None", Warranty:"2yr" },
@@ -154,6 +159,7 @@ const ICE_CARS = [
     id: "maruti-fronx-2025", brand: "Maruti Suzuki", name: "Fronx", year: "2025",
     fuel: ["petrol","hybrid"], priceRange: "₹7.51 – 13.47 L",
     meta: ["1.2L Petrol / 1.0L Turbo + 48V Hybrid","5 seats","FWD"],
+    image: "images/maruti-fronx-2025.jpg",
     colors: [{name:"Splendid Silver",hex:"#b8b8b8"},{name:"Celestial Blue",hex:"#1e4a82"},{name:"Granita Grey",hex:"#5c5c5c"},{name:"Arctic White",hex:"#f2efea"},{name:"Opulent Red",hex:"#9b2020"}],
     variants: [
       { name:"Sigma (Base)", price:"₹7.51 L", specs:{ Engine:"1.2L Petrol (90 hp)", Transmission:"5-speed MT", Mileage:"21.79 km/L", "Boot Space":"308 L", "Ground Clearance":"180 mm", Airbags:"2", Touchscreen:"None", Warranty:"2yr" },
@@ -177,6 +183,7 @@ const ICE_CARS = [
     id: "renault-duster-2025", brand: "Renault", name: "Duster", year: "2025",
     fuel: ["petrol"], priceRange: "₹10.49 – 18.49 L",
     meta: ["1.5L Turbo Petrol (150 hp)","5 seats","FWD / AWD option"],
+    image: "images/renault-duster-2025.jpg",
     colors: [{name:"Pearl White",hex:"#f0ede5"},{name:"Slate Grey",hex:"#6b7280"},{name:"Cedar Brown",hex:"#7c4f3a"},{name:"Urban Black",hex:"#1a1a1a"},{name:"Iron Blue",hex:"#2d4a6e"}],
     variants: [
       { name:"Journey (Base)", price:"₹10.49 L", specs:{ Engine:"1.5L Turbo Petrol (150 hp)", Transmission:"6-speed MT", Mileage:"15.7 km/L", "Boot Space":"472 L", "Ground Clearance":"217 mm", Airbags:"4", Touchscreen:"10.4-inch", Warranty:"2yr" },
@@ -200,6 +207,7 @@ const ICE_CARS = [
     id: "skoda-kylaq-2025", brand: "Skoda", name: "Kylaq", year: "2025",
     fuel: ["petrol"], priceRange: "₹7.89 – 14.40 L",
     meta: ["1.0L TSI Turbo Petrol (115 hp)","5 seats","FWD"],
+    image: "images/skoda-kylaq-2025.png",
     colors: [{name:"Brilliant Silver",hex:"#c8c8c8"},{name:"Carbon Steel",hex:"#3c3c3c"},{name:"Tornado Red",hex:"#b82020"},{name:"Candywhite",hex:"#f0ede8"},{name:"Mango Orange",hex:"#e07830"}],
     variants: [
       { name:"Classic (Base)", price:"₹7.89 L", specs:{ Engine:"1.0L TSI Turbo Petrol (115 hp)", Transmission:"6-speed MT", Mileage:"21.4 km/L", "Boot Space":"446 L", "Ground Clearance":"189 mm", Airbags:"2", Touchscreen:"8-inch", Warranty:"4yr" },
@@ -223,6 +231,7 @@ const ICE_CARS = [
     id: "tata-nexon-2025", brand: "Tata", name: "Nexon", year: "2025",
     fuel: ["petrol","diesel"], priceRange: "₹8.14 – 15.49 L",
     meta: ["1.2L Turbo Petrol / 1.5L Diesel","5 seats","FWD"],
+    image: "images/tata-nexon-2025.jpg",
     colors: [{name:"Pristine White",hex:"#f0eeea"},{name:"Daytona Grey",hex:"#4a4a4a"},{name:"Intensi-Teal",hex:"#1a6b6b"},{name:"Calypso Red",hex:"#b52020"},{name:"Fearless Purple",hex:"#4a2080"}],
     variants: [
       { name:"Smart (Base)", price:"₹8.14 L", specs:{ Engine:"1.2L Turbo Petrol (120 hp)", Transmission:"5-speed MT", Mileage:"17.44 km/L", "Boot Space":"382 L", "Ground Clearance":"209 mm", Airbags:"6", Touchscreen:"10.25-inch", Warranty:"3yr" },
@@ -246,6 +255,7 @@ const ICE_CARS = [
     id: "tata-sierra-2025", brand: "Tata", name: "Sierra", year: "2025",
     fuel: ["petrol","diesel"], priceRange: "₹11.49 – 21.29 L",
     meta: ["1.2L Turbo Petrol / 1.5L Diesel","5 seats","FWD"],
+    image: null,
     colors: [{name:"Pristine White",hex:"#f0eeea"},{name:"Lunar Grey",hex:"#5a5a5a"},{name:"Atomic Orange",hex:"#e06020"},{name:"Intensi-Teal",hex:"#1a6b6b"},{name:"Midnight Black",hex:"#141414"}],
     variants: [
       { name:"Smart (Base)", price:"₹11.49 L", specs:{ Engine:"1.2L Turbo Petrol (120 hp)", Transmission:"6-speed MT", Mileage:"17.1 km/L", "Boot Space":"420 L", "Ground Clearance":"200 mm", Airbags:"6", Touchscreen:"12.3-inch", Warranty:"3yr" },
@@ -269,6 +279,7 @@ const ICE_CARS = [
     id: "toyota-hyryder-2025", brand: "Toyota", name: "Urban Cruiser Hyryder", year: "2025",
     fuel: ["petrol","hybrid"], priceRange: "₹10.99 – 20.19 L",
     meta: ["1.5L Petrol / Strong Hybrid","5 seats","FWD / AWD Hybrid"],
+    image: "images/toyota-hyryder-2025.jpg",
     colors: [{name:"Pearl White",hex:"#eeeae2"},{name:"Sporting Red",hex:"#ad2020"},{name:"Enticing Silver",hex:"#aaaaaa"},{name:"Gaming Grey",hex:"#555"},{name:"Stormy Blue",hex:"#1e3a6a"}],
     variants: [
       { name:"E (Base)", price:"₹10.99 L", specs:{ Engine:"1.5L Petrol (103 hp)", Transmission:"5-speed MT", Mileage:"17.4 km/L", "Boot Space":"373 L", "Ground Clearance":"200 mm", Airbags:"2", Touchscreen:"9-inch", Warranty:"3yr" },
@@ -292,6 +303,7 @@ const ICE_CARS = [
     id: "vw-taigun-2025", brand: "Volkswagen", name: "Taigun", year: "2025",
     fuel: ["petrol"], priceRange: "₹11.00 – 19.30 L",
     meta: ["1.0L TSI / 1.5L TSI EVO Petrol","5 seats","FWD"],
+    image: "images/vw-taigun-2025.jpg",
     colors: [{name:"Deep Black",hex:"#141414"},{name:"Reflex Silver",hex:"#b0b0b0"},{name:"Kings Red",hex:"#9e1e1e"},{name:"White Silver",hex:"#e8e8e2"},{name:"Rising Blue",hex:"#2050a0"},{name:"Sunflower Yellow",hex:"#d4ac00"}],
     variants: [
       { name:"Comfortline (Base)", price:"₹11.00 L", specs:{ Engine:"1.0L TSI Turbo Petrol (115 hp)", Transmission:"6-speed MT", Mileage:"19.47 km/L", "Boot Space":"385 L", "Ground Clearance":"188 mm", Airbags:"6", Touchscreen:"10-inch", Warranty:"4yr" },
@@ -318,6 +330,7 @@ const EV_CARS = [
     id: "tata-nexon-ev-2025", brand: "Tata", name: "Nexon EV", year: "2025",
     fuel: ["electric"], priceRange: "₹12.49 – 17.49 L",
     meta: ["30 kWh / 45 kWh battery","142 hp motor","489 km ARAI range"],
+    image: "images/tata-nexon-ev-2025.png",
     colors: [{name:"Pure Grey",hex:"#888"},{name:"Ocean Blue",hex:"#1a3f6e"},{name:"Pristine White",hex:"#f0eeea"},{name:"Daytona Grey",hex:"#4a4a4a"},{name:"Calypso Red",hex:"#b52020"}],
     variants: [
       { name:"Creative+ MR (Base)", price:"₹12.49 L", specs:{ Battery:"30 kWh", Range:"275 km (MIDC)", Motor:"129 hp / 215 Nm", Mileage:"~275 km/charge", "AC Charging":"7.2 kW (4.3 hrs)", "DC Fast Charge":"50 kW", "Boot Space":"382 L", Airbags:"6", Touchscreen:"12.3-inch", Warranty:"3yr / 8yr battery" },
@@ -341,6 +354,7 @@ const EV_CARS = [
     id: "mahindra-xuv400-2025", brand: "Mahindra", name: "XUV400 EV", year: "2025",
     fuel: ["electric"], priceRange: "₹15.49 – 19.99 L",
     meta: ["39.4 kWh / 57.5 kWh battery","150 hp motor","Up to 456 km range"],
+    image: "images/mahindra-xuv400-2025.jpg",
     colors: [{name:"Napoli Black",hex:"#161616"},{name:"Galaxy Grey",hex:"#545454"},{name:"Everest White",hex:"#eeeae0"},{name:"Tango Red",hex:"#b52020"},{name:"Arctic Blue",hex:"#1a4a8a"}],
     variants: [
       { name:"EC Pro (Base)", price:"₹15.49 L", specs:{ Battery:"39.4 kWh", Range:"375 km (MIDC)", Motor:"147 hp / 310 Nm", Mileage:"~375 km/charge", "AC Charging":"11 kW (3.5 hrs)", "DC Fast Charge":"50 kW", "Boot Space":"378 L", Airbags:"6", Touchscreen:"10.25-inch", Warranty:"3yr / 8yr battery" },
@@ -364,6 +378,7 @@ const EV_CARS = [
     id: "mg-windsor-ev-2025", brand: "MG", name: "Windsor EV", year: "2025",
     fuel: ["electric"], priceRange: "₹13.49 – 17.26 L",
     meta: ["38 kWh battery","136 hp motor","331 km WLTP range"],
+    image: "images/mg-windsor-ev-2025.jpg",
     colors: [{name:"Stardust Silver",hex:"#c0bdb6"},{name:"Aurora Silver",hex:"#a8a4a0"},{name:"Pearl White",hex:"#ede9e0"},{name:"Starry Black",hex:"#181818"},{name:"Canyon Red",hex:"#a01e1e"}],
     variants: [
       { name:"Excite (Base)", price:"₹13.49 L", specs:{ Battery:"38 kWh", Range:"331 km (WLTP)", Motor:"136 hp / 200 Nm", Mileage:"~331 km/charge", "AC Charging":"7.4 kW", "DC Fast Charge":"50 kW", "Boot Space":"604 L", Airbags:"6", Touchscreen:"15.6-inch rotating", Warranty:"5yr / 8yr battery" },
@@ -387,6 +402,7 @@ const EV_CARS = [
     id: "tata-curvv-ev-2025", brand: "Tata", name: "Curvv EV", year: "2025",
     fuel: ["electric"], priceRange: "₹17.49 – 21.99 L",
     meta: ["45 kWh / 55 kWh battery","167 hp motor","Up to 585 km ARAI range"],
+    image: "images/tata-curvv-ev-2025.jpg",
     colors: [{name:"Pure Grey",hex:"#888"},{name:"Cosmic Gold",hex:"#c8a840"},{name:"Pristine White",hex:"#f0eeea"},{name:"Daytona Grey",hex:"#4a4a4a"},{name:"Empowered Crimson",hex:"#960a0a"}],
     variants: [
       { name:"Creative+ (Base)", price:"₹17.49 L", specs:{ Battery:"45 kWh", Range:"502 km (ARAI)", Motor:"150 hp / 215 Nm", Mileage:"~502 km/charge", "AC Charging":"11 kW", "DC Fast Charge":"70 kW", "Boot Space":"500 L", Airbags:"6", Touchscreen:"12.3-inch", Warranty:"3yr / 8yr battery" },
@@ -410,6 +426,7 @@ const EV_CARS = [
     id: "kia-syros-ev-2026", brand: "Kia", name: "Syros EV", year: "2026",
     fuel: ["electric"], priceRange: "₹18.00 – 22.00 L (est.)",
     meta: ["~48 kWh battery (est.)","~160 hp motor","~450 km range (est.)"],
+    image: "images/kia-syros-2026.jpg",
     colors: [{name:"Glacier White",hex:"#f0ede8"},{name:"Midnight Black",hex:"#161616"},{name:"Sage Green",hex:"#5a7a5a"},{name:"Steel Blue",hex:"#2a4a70"}],
     variants: [
       { name:"HTE (Base est.)", price:"₹18.00 L", specs:{ Battery:"~48 kWh (est.)", Range:"~400 km (est.)", Motor:"~150 hp", Mileage:"~400 km/charge (est.)", "AC Charging":"11 kW", "DC Fast Charge":"Yes", "Boot Space":"~465 L", Airbags:"6", Touchscreen:"10.67-inch", Warranty:"TBD / 8yr battery est." },
@@ -501,6 +518,7 @@ function _carCard(car, linkPrefix = '') {
     <div class="sel-box${_selected.has(id)?' on':''}" id="sb-${id}" onclick="event.stopPropagation();toggleSel('${id}')">
       <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5l2.5 2.5 5-5" stroke="#0e0f11" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
+    ${car.image ? `<div style="width:88px;height:56px;flex-shrink:0;border-radius:6px;overflow:hidden;background:var(--bg3)"><img src="${car.image}" alt="${car.name}" style="width:100%;height:100%;object-fit:cover" loading="lazy" onerror="this.parentElement.style.display='none'"></div>` : ''}
     <div class="car-info">
       <div class="car-name">${car.name}<span class="yr-badge">${car.year}</span>${isEV?'<span class="ev-badge">EV</span>':''}</div>
       <div class="car-meta">${car.meta.map(m=>`<span>${m}</span>`).join('')}</div>
