@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SUV Scout India · Compact SUVs 2025–2026 · ₹10–20 Lakhs</title>
+<title>ICE & Hybrid SUVs India 2025–2026 | SUV Scout</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -11,8 +11,8 @@
 <nav>
   <a class="nav-logo" href="index.html">SUV Scout India<small>2025–2026 · ₹10–20 Lakhs</small></a>
   <div class="nav-links">
-    <a class="nav-link active" href="index.html">All Models</a>
-    <a class="nav-link" href="ice.html">ICE / Hybrid</a>
+    <a class="nav-link" href="index.html">All Models</a>
+    <a class="nav-link active" href="ice.html">ICE / Hybrid</a>
     <a class="nav-link ev" href="ev.html">Electric (EV)</a>
     <a class="nav-compare-btn" href="compare.html">⇌ Compare</a>
   </div>
@@ -20,46 +20,34 @@
 
 <main class="page-wrap">
   <div class="page-hero">
-    <h1>Compact SUVs<br><span>India 2025–2026</span></h1>
-    <p>All models in the ₹10–20 lakh range, sorted by brand. Tap any vehicle to explore variants, specs, and features. Select up to 4 to compare side-by-side. Hover <span style="border-bottom:1px dashed var(--accent);color:var(--accent);cursor:help">highlighted terms</span> for plain-English explanations.</p>
+    <h1>ICE &amp; <span>Hybrid SUVs</span></h1>
+    <p>12 petrol, diesel and mild/strong hybrid compact SUVs in the ₹10–20 lakh range, sorted by brand. Hover <span style="border-bottom:1px dashed var(--accent);color:var(--accent)">highlighted terms</span> for plain-English explanations.</p>
   </div>
 
   <div class="filter-bar">
-    <span class="filter-label">Filter:</span>
+    <span class="filter-label">Filter by:</span>
     <button class="filter-btn active" onclick="applyFilter('all',this)">All</button>
-    <button class="filter-btn" onclick="applyFilter('2025',this)">2025</button>
-    <button class="filter-btn" onclick="applyFilter('2026',this)">2026</button>
+    <button class="filter-btn" onclick="applyFilter('2025',this)">2025 models</button>
+    <button class="filter-btn" onclick="applyFilter('2026',this)">2026 models</button>
     <button class="filter-btn" onclick="applyFilter('petrol',this)">Petrol</button>
     <button class="filter-btn" onclick="applyFilter('diesel',this)">Diesel</button>
     <button class="filter-btn" onclick="applyFilter('hybrid',this)">Hybrid</button>
-    <button class="filter-btn" onclick="applyFilter('electric',this)">Electric (EV)</button>
   </div>
 
-  <!-- ICE Section -->
   <div class="section-hd">
     <h2>ICE &amp; Hybrid SUVs</h2>
-    <span class="badge" id="ice-count"></span>
+    <span class="badge" id="count-badge"></span>
   </div>
-  <div id="ice-list"></div>
 
-  <div style="height:56px"></div>
-
-  <!-- EV Section -->
-  <div class="section-hd" style="border-bottom-color:rgba(79,195,138,0.3)">
-    <h2 style="color:var(--ev)">Electric SUVs (EV)</h2>
-    <span class="badge" id="ev-count"></span>
-  </div>
-  <div id="ev-list"></div>
+  <div id="car-list"></div>
 </main>
 
-<!-- Compare sticky bar -->
 <div class="compare-sticky" id="compare-bar">
   <span class="cmp-label" id="cmp-n"></span>
   <button class="cmp-clear" onclick="clearSel()">Clear</button>
   <a class="cmp-go" onclick="goCompare()">Compare ↗</a>
 </div>
 
-<!-- Glossary -->
 <div class="glossary-btn-wrap">
   <button class="glossary-btn" onclick="document.getElementById('gl-modal').classList.add('open')">📖 Glossary</button>
 </div>
@@ -71,30 +59,28 @@
 </div>
 
 <footer>
-  <p>SUV Scout India · Data sourced from manufacturer websites &amp; CarWale / CardEkho (April 2026). Prices ex-showroom.</p>
+  <p>SUV Scout India · Prices ex-showroom, April 2026.</p>
   <a href="compare.html">Compare vehicles ↗</a>
 </footer>
 
 <script src="data.js"></script>
 <script>
-function buildBrandGroups(cars, containerId, linkPrefix) {
+function buildBrandGroups(cars, containerId) {
   const brands = [...new Set(cars.map(c => c.brand))].sort();
   const container = document.getElementById(containerId);
   container.innerHTML = '';
   brands.forEach(brand => {
     const grp = document.createElement('div');
     grp.className = 'brand-group';
-    grp.dataset.linkprefix = linkPrefix;
+    grp.dataset.linkprefix = '';
     grp.innerHTML = `<div class="brand-label">${brand}</div>` +
-      cars.filter(c => c.brand === brand).map(c => _carCard(c, linkPrefix)).join('');
+      cars.filter(c => c.brand === brand).map(c => _carCard(c, '')).join('');
     container.appendChild(grp);
   });
 }
 
-buildBrandGroups(ICE_CARS, 'ice-list', '');
-buildBrandGroups(EV_CARS, 'ev-list', '');
-document.getElementById('ice-count').textContent = ICE_CARS.length + ' models';
-document.getElementById('ev-count').textContent = EV_CARS.length + ' models';
+buildBrandGroups(ICE_CARS, 'car-list');
+document.getElementById('count-badge').textContent = ICE_CARS.length + ' models';
 document.getElementById('gl-content').innerHTML = renderGlossary();
 
 function applyFilter(type, btn) {

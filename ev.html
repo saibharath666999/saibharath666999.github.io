@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electric SUVs India 2025–2026 | SUV Scout</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="ev-page">
+
+<nav>
+  <a class="nav-logo" href="index.html">SUV Scout India<small>2025–2026 · ₹10–20 Lakhs</small></a>
+  <div class="nav-links">
+    <a class="nav-link" href="index.html">All Models</a>
+    <a class="nav-link" href="ice.html">ICE / Hybrid</a>
+    <a class="nav-link ev active" href="ev.html">Electric (EV)</a>
+    <a class="nav-compare-btn" href="compare.html">⇌ Compare</a>
+  </div>
+</nav>
+
+<main class="page-wrap">
+  <div class="page-hero">
+    <h1>Electric SUVs<br><span class="ev">India 2025–2026</span></h1>
+    <p>5 battery electric compact SUVs. Zero tailpipe emissions, instant torque, and lower running costs. Hover <span style="border-bottom:1px dashed var(--ev);color:var(--ev)">highlighted terms</span> for plain-English explanations.</p>
+  </div>
+
+  <div class="filter-bar ev-page">
+    <span class="filter-label">Filter by:</span>
+    <button class="filter-btn active" onclick="applyFilter('all',this)">All</button>
+    <button class="filter-btn" onclick="applyFilter('2025',this)">2025 models</button>
+    <button class="filter-btn" onclick="applyFilter('2026',this)">2026 models</button>
+  </div>
+
+  <div class="section-hd" style="border-bottom-color:rgba(79,195,138,0.3)">
+    <h2 style="color:var(--ev)">Electric SUVs (EV)</h2>
+    <span class="badge" id="count-badge"></span>
+  </div>
+
+  <div id="ev-list"></div>
+</main>
+
+<div class="compare-sticky" id="compare-bar">
+  <span class="cmp-label" id="cmp-n"></span>
+  <button class="cmp-clear" onclick="clearSel()">Clear</button>
+  <a class="cmp-go" onclick="goCompare()">Compare ↗</a>
+</div>
+
+<div class="glossary-btn-wrap">
+  <button class="glossary-btn" onclick="document.getElementById('gl-modal').classList.add('open')">📖 Glossary</button>
+</div>
+<div class="glossary-modal" id="gl-modal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="glossary-inner">
+    <h3>EV Jargon Explained <button class="gl-close" onclick="document.getElementById('gl-modal').classList.remove('open')">✕</button></h3>
+    <div id="gl-content"></div>
+  </div>
+</div>
+
+<footer>
+  <p>SUV Scout India · Prices ex-showroom, April 2026. EV range figures are ARAI/WLTP certified.</p>
+  <a href="compare.html">Compare vehicles ↗</a>
+</footer>
+
+<script src="data.js"></script>
+<script>
+function buildBrandGroups(cars, containerId) {
+  const brands = [...new Set(cars.map(c => c.brand))].sort();
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+  brands.forEach(brand => {
+    const grp = document.createElement('div');
+    grp.className = 'brand-group';
+    grp.dataset.linkprefix = '';
+    grp.innerHTML = `<div class="brand-label">${brand}</div>` +
+      cars.filter(c => c.brand === brand).map(c => _carCard(c, '')).join('');
+    container.appendChild(grp);
+  });
+}
+
+buildBrandGroups(EV_CARS, 'ev-list');
+document.getElementById('count-badge').textContent = EV_CARS.length + ' models';
+document.getElementById('gl-content').innerHTML = renderGlossary();
+
+function applyFilter(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.car-card').forEach(card => {
+    if (type === 'all') card.style.display = '';
+    else card.style.display = card.dataset.year === type ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

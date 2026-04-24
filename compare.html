@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compare SUVs | SUV Scout India</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="compare-page">
+
+<nav>
+  <a class="nav-logo" href="index.html">SUV Scout India<small>2025–2026 · ₹10–20 Lakhs</small></a>
+  <div class="nav-links">
+    <a class="nav-link" href="index.html">All Models</a>
+    <a class="nav-link" href="ice.html">ICE / Hybrid</a>
+    <a class="nav-link ev" href="ev.html">Electric (EV)</a>
+    <a class="nav-compare-btn active" href="compare.html">⇌ Compare</a>
+  </div>
+</nav>
+
+<main class="page-wrap">
+  <div class="page-hero">
+    <h1>Compare <span>SUVs</span></h1>
+    <p>Select up to 4 vehicles to compare side-by-side. Use the price filter to narrow your shortlist.</p>
+  </div>
+
+  <!-- Add vehicle + price filter toolbar -->
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:32px">
+    <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-end;margin-bottom:16px">
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px">Add vehicle to compare</label>
+        <select id="car-picker" style="min-width:280px">
+          <option value="">— Select a vehicle —</option>
+        </select>
+      </div>
+      <button onclick="addFromPicker()" style="background:var(--accent);color:#0e0f11;border:none;padding:10px 20px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;cursor:pointer;height:38px">Add</button>
+      <button onclick="clearAll()" style="background:none;border:1px solid var(--border2);color:var(--muted);padding:9px 18px;border-radius:var(--radius-sm);font-size:13px;cursor:pointer;height:38px">Clear all</button>
+    </div>
+
+    <!-- Price filter -->
+    <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:center">
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px">Min price (lakhs)</label>
+        <div style="display:flex;align-items:center;gap:10px">
+          <input type="range" id="price-min" min="7" max="22" step="0.5" value="7" oninput="applyPriceFilter()" style="width:140px">
+          <span id="price-min-val" style="font-size:13px;color:var(--accent);font-weight:500;min-width:50px">₹7 L</span>
+        </div>
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px">Max price (lakhs)</label>
+        <div style="display:flex;align-items:center;gap:10px">
+          <input type="range" id="price-max" min="7" max="25" step="0.5" value="25" oninput="applyPriceFilter()" style="width:140px">
+          <span id="price-max-val" style="font-size:13px;color:var(--accent);font-weight:500;min-width:50px">₹25 L</span>
+        </div>
+      </div>
+      <div>
+        <label style="font-size:11px;color:var(--muted);display:block;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px">Type</label>
+        <div style="display:flex;gap:6px">
+          <button class="filter-btn active" id="ft-all" onclick="setFuelFilter('all',this)">All</button>
+          <button class="filter-btn" id="ft-ice" onclick="setFuelFilter('ice',this)">ICE / Hybrid</button>
+          <button class="filter-btn" id="ft-ev" onclick="setFuelFilter('ev',this)">EV only</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filtered vehicle list for adding -->
+  <div id="filtered-list" style="display:none;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px 24px;margin-bottom:32px">
+    <div style="font-size:12px;color:var(--muted);margin-bottom:14px;text-transform:uppercase;letter-spacing:0.5px">Matching vehicles (click to add)</div>
+    <div id="filtered-cards" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+  </div>
+
+  <!-- Comparison table -->
+  <div class="section-hd">
+    <h2>Side-by-side comparison</h2>
+    <span class="badge" id="cmp-badge">0 vehicles</span>
+  </div>
+
+  <div id="compare-area">
+    <div class="empty-compare">
+      <div class="icon">⇌</div>
+      <p>No vehicles selected yet.<br>Use the picker above or browse from the list pages.</p>
+      <a class="go-browse" href="index.html">Browse all models →</a>
+    </div>
+  </div>
+</main>
+
+<div class="glossary-btn-wrap">
+  <button class="glossary-btn" onclick="document.getElementById('gl-modal').classList.add('open')">📖 Glossary</button>
+</div>
+<div class="glossary-modal" id="gl-modal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="glossary-inner">
+    <h3>Jargon Explained <button class="gl-close" onclick="document.getElementById('gl-modal').classList.remove('open')">✕</button></h3>
+    <div id="gl-content"></div>
+  </div>
+</div>
+
+<footer>
+  <p>SUV Scout India · Prices ex-showroom, April 2026. Best value highlighted in green.</p>
+  <a href="index.html">← All models</a>
+</footer>
+
+<script src="data.js"></script>
+<script>
+const ALL_CARS = [...ICE_CARS, ...EV_CARS];
+let compareCars = [];
+let fuelFilter = 'all';
+
+function priceNum(str) {
+  const m = String(str).match(/[\d.]+/);
+  return m ? parseFloat(m[0]) : 999;
+}
+
+// Populate picker
+function populatePicker(cars) {
+  const pk = document.getElementById('car-picker');
+  pk.innerHTML = '<option value="">— Select a vehicle —</option>';
+  cars.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c.id;
+    opt.textContent = `${c.brand} ${c.name} ${c.year} (${c.priceRange})`;
+    pk.appendChild(opt);
+  });
+}
+
+function getFilteredCars() {
+  const minP = parseFloat(document.getElementById('price-min').value);
+  const maxP = parseFloat(document.getElementById('price-max').value);
+  return ALL_CARS.filter(c => {
+    const p = priceNum(c.priceRange);
+    const inRange = p >= minP && p <= maxP;
+    const matchFuel = fuelFilter === 'all' ||
+      (fuelFilter === 'ev' && c.fuel.includes('electric')) ||
+      (fuelFilter === 'ice' && !c.fuel.includes('electric'));
+    return inRange && matchFuel;
+  });
+}
+
+function applyPriceFilter() {
+  const minP = parseFloat(document.getElementById('price-min').value);
+  const maxP = parseFloat(document.getElementById('price-max').value);
+  document.getElementById('price-min-val').textContent = `₹${minP} L`;
+  document.getElementById('price-max-val').textContent = `₹${maxP} L`;
+  const filtered = getFilteredCars();
+  populatePicker(filtered);
+  renderFilteredCards(filtered);
+}
+
+function setFuelFilter(type, btn) {
+  fuelFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyPriceFilter();
+}
+
+function renderFilteredCards(cars) {
+  const wrap = document.getElementById('filtered-list');
+  const cont = document.getElementById('filtered-cards');
+  if (!cars.length) { wrap.style.display = 'none'; return; }
+  wrap.style.display = 'block';
+  cont.innerHTML = cars.map(c => {
+    const already = compareCars.some(x => x.id === c.id);
+    const isEV = c.fuel.includes('electric');
+    return `<button onclick="addCar('${c.id}')" style="
+      padding:8px 14px;border-radius:var(--radius-sm);font-size:12px;cursor:pointer;
+      font-family:'DM Sans',sans-serif;
+      background:${already ? (isEV ? 'var(--ev-dim)' : 'var(--accent-dim)') : 'var(--bg3)'};
+      border:1px solid ${already ? (isEV ? 'var(--ev)' : 'var(--accent)') : 'var(--border2)'};
+      color:${already ? (isEV ? 'var(--ev)' : 'var(--accent)') : 'var(--muted)'};
+    ">${c.brand} ${c.name} ${c.year}${isEV?' ⚡':''}<br><small style="opacity:0.7">${c.priceRange}</small></button>`;
+  }).join('');
+}
+
+function addFromPicker() {
+  const pk = document.getElementById('car-picker');
+  if (pk.value) addCar(pk.value);
+}
+
+function addCar(id) {
+  if (compareCars.some(c => c.id === id)) return;
+  if (compareCars.length >= 4) { alert('Maximum 4 vehicles for comparison.'); return; }
+  const car = ALL_CARS.find(c => c.id === id);
+  if (car) { compareCars.push(car); renderTable(); applyPriceFilter(); }
+}
+
+function removeCar(id) {
+  compareCars = compareCars.filter(c => c.id !== id);
+  renderTable();
+  applyPriceFilter();
+}
+
+function clearAll() {
+  compareCars = [];
+  renderTable();
+  applyPriceFilter();
+}
+
+function renderTable() {
+  const area = document.getElementById('compare-area');
+  document.getElementById('cmp-badge').textContent = compareCars.length + ' vehicles';
+
+  if (!compareCars.length) {
+    area.innerHTML = `
+      <div class="empty-compare">
+        <div class="icon">⇌</div>
+        <p>No vehicles selected yet.<br>Use the picker above or click any vehicle in the filtered list.</p>
+        <a class="go-browse" href="index.html">Browse all models →</a>
+      </div>`;
+    return;
+  }
+
+  const rows = [
+    { label: 'Brand', fn: c => c.brand },
+    { label: 'Model', fn: c => `<a href="vehicle-${c.id}.html" style="color:var(--accent);text-decoration:none">${c.name} ${c.year} ↗</a>` },
+    { label: 'Type', fn: c => c.fuel.includes('electric') ? '<span style="color:var(--ev)">Electric EV</span>' : 'ICE / Hybrid' },
+    { label: 'Price range', fn: c => `<strong style="color:var(--accent)">${c.priceRange}</strong>` },
+    { label: 'Base variant', fn: c => c.variants[0].name },
+    { label: 'Base price', fn: c => c.variants[0].price, best: 'min' },
+    { label: 'Top variant', fn: c => c.variants[c.variants.length-1].name },
+    { label: 'Top price', fn: c => c.variants[c.variants.length-1].price },
+    { label: 'Engine / Motor', fn: c => c.fuel.includes('electric') ? c.variants[0].specs.Motor : c.variants[0].specs.Engine },
+    { label: 'Mileage / Range', fn: c => c.fuel.includes('electric') ? c.variants[0].specs.Range : c.variants[0].specs.Mileage, best: 'max' },
+    { label: 'Boot space', fn: c => c.variants[0].specs['Boot Space'], best: 'max' },
+    { label: 'Ground clearance', fn: c => c.fuel.includes('electric') ? '—' : (c.variants[0].specs['Ground Clearance'] || '—'), best: 'max' },
+    { label: 'Airbags (base)', fn: c => c.variants[0].specs.Airbags, best: 'max' },
+    { label: 'Touchscreen', fn: c => c.variants[0].specs.Touchscreen },
+    { label: 'Warranty', fn: c => c.variants[0].specs.Warranty },
+    { label: 'Colors', fn: c => c.colors.map(col=>`<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:${col.hex};border:1px solid rgba(255,255,255,0.2);margin-right:3px;vertical-align:middle" title="${col.name}"></span>`).join('') },
+  ];
+
+  function extractNum(str) {
+    const m = String(str || '').match(/[\d.]+/);
+    return m ? parseFloat(m[0]) : null;
+  }
+
+  const thead = `<tr>
+    <th>Feature</th>
+    ${compareCars.map(c => `<th>${c.brand} ${c.name} ${c.year}
+      <button class="remove-col-btn" onclick="removeCar('${c.id}')" title="Remove">✕</button>
+    </th>`).join('')}
+  </tr>`;
+
+  const tbody = rows.map(row => {
+    const vals = compareCars.map(c => row.fn(c));
+    let bestIdx = -1;
+    if (row.best) {
+      const nums = vals.map(v => extractNum(v));
+      if (nums.some(n => n !== null)) {
+        bestIdx = row.best === 'max'
+          ? nums.indexOf(Math.max(...nums.filter(n => n !== null)))
+          : nums.indexOf(Math.min(...nums.filter(n => n !== null)));
+      }
+    }
+    return `<tr>
+      <td>${row.label}</td>
+      ${vals.map((v,i) => `<td${i===bestIdx?' class="cmp-best"':''}>${v}</td>`).join('')}
+    </tr>`;
+  }).join('');
+
+  area.innerHTML = `
+    <div class="compare-table-outer">
+      <table class="cmp-table">
+        <thead>${thead}</thead>
+        <tbody>${tbody}</tbody>
+      </table>
+    </div>
+    <p style="font-size:11px;color:var(--muted);margin-top:8px">
+      <span style="color:var(--ev);font-weight:600">Green values</span> indicate the best figure in each row. Mileage/range and boot space: higher is better. Base price: lower is better.
+    </p>`;
+}
+
+// Init from URL params
+const urlIds = new URLSearchParams(location.search).get('ids');
+if (urlIds) {
+  urlIds.split(',').forEach(id => {
+    const car = ALL_CARS.find(c => c.id === id.trim());
+    if (car && compareCars.length < 4) compareCars.push(car);
+  });
+}
+
+populatePicker(ALL_CARS);
+renderTable();
+document.getElementById('gl-content').innerHTML = renderGlossary();
+applyPriceFilter();
+</script>
+</body>
+</html>
